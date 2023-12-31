@@ -19,3 +19,4 @@ func main() {
 	webAPIUsers.NewRouting(handler)
 }
 ```
+**webAPIUsers.NewDB()** This function returns a pointer to a **DataBase structure** that has a field of type ***sql.DB**, and the function connects to the database specified in the function.
