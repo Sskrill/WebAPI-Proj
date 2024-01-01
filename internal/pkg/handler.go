@@ -5,6 +5,7 @@ import (
 	"net/http"
 	"strconv"
 
+	"github.com/Sskrill/WebAPI-Proj/internal/cache"
 	"github.com/gin-gonic/gin"
 )
 
@@ -12,11 +13,12 @@ type ErrorResponse struct {
 	Message string `json:"message"`
 }
 type Handler struct {
-	crud CRUD
+	crud  CRUD
+	cache *cache.Cache
 }
 
-func NewHandler(crud CRUD) *Handler {
-	return &Handler{crud: crud}
+func NewHandler(crud CRUD, cache *cache.Cache) *Handler {
+	return &Handler{crud: crud, cache: cache}
 }
 func (h *Handler) GetUser(c *gin.Context) {
 	id, err := strconv.Atoi(c.Param("id"))
@@ -26,12 +28,17 @@ func (h *Handler) GetUser(c *gin.Context) {
 			Message: err.Error(),
 		})
 	}
-
-	user, err := h.crud.Get(id)
+	user, ok := h.cache.Get(id)
+	if ok {
+		c.JSON(http.StatusAccepted, user)
+		return
+	}
+	user, err = h.crud.Get(id)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, ErrorResponse{Message: err.Error()})
 		return
 	}
+	h.cache.Set(id, user)
 	c.JSON(http.StatusOK, user)
 }
 func (h *Handler) CreateUser(c *gin.Context) {

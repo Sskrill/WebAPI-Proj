@@ -26,7 +26,7 @@ type DataBase struct {
 
 func NewDB() *DataBase {
 
-	connStr := fmt.Sprintf("host=localhost port=5432 user=username password=password dbname=postgres sslmode=disable")
+	connStr := fmt.Sprintf("host=localhost port=5432 user=postgres password=1q2W3e4R5t6Y0qq34rg dbname=postgres sslmode=disable")
 	db, err := sql.Open("postgres", connStr)
 	if err != nil {
 
