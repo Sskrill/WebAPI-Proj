@@ -24,4 +24,5 @@ cache := cache.NewCache(time.Second * 10)
 **webAPIUsers.NewHandler(db)** :This method returns a structure with the ***Handler** type.Which has a field with the **CRUD** *interface* type (and the DataBase structure is implemented from it).And as an argument, it requires an object that is implemented from the **CRUD** *interface*.
 
 **webAPIUsers.NewRouting(handler)** :This function starts the server with different routes.As an argument, it takes a ***Handler**, from which it will use handlers for the specified *routes*, and these handlers will use functions that are in the **CRUD** *interface*.
+
 **cache.NewCache(time.Second * 10)** :This function creates a variable with a **cache structure** in which there are methods for caching data, and then we pass it as an argument to the handler creation function.
