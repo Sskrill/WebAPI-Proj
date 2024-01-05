@@ -38,7 +38,6 @@ func NewHandler(crud CRUD, cache *cache.Cache) *Handler {
 	return &Handler{crud: crud, cache: cache}
 }
 func (h *Handler) GeneralHandler(w http.ResponseWriter, r *http.Request) {
-
 	switch r.Method {
 	case http.MethodGet:
 		h.GetUser(w, r)
