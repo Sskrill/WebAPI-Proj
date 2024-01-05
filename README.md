@@ -27,4 +27,4 @@ cache := cache.NewCache(time.Second * 10)
 
 **cache.NewCache(time.Second * 10)** :This function creates a variable with a **cache structure** in which there are methods for caching data, and then we pass it as an argument to the handler creation function.
 
-***This version uses net/http instead of gin. I just changed the handler file.go and also affected router.go .Now you need to write this "?id=(id)" after the users route in parentheses, you must specify its id.And I also added a small configuration with the file "env."***
+***This version uses net/http instead of gin. I just changed the handler file.go and also affected router.go .Now you need to write this "?id=(id)" after the users route in parentheses, you must specify its id.And I also added a small configuration with the file ".env"***
